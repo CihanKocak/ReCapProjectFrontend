@@ -1,18 +1,21 @@
-<h1 class="bg-dark text-light text-center">Customers</h1>
+<div style="text-align:center"  aria-current="true"><h4>Müsteriler listeleniyor</h4></div>
+<table class="table">
 
-<table class="table table-dark">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Company</th>
+    <thead>
+        <tr>
+            <th>Müsteri Id</th>
+            <th>müster Adı</th>
+            <th>Müsteri Email</th>
+            <th>Müsteri Şirket</th>
+
+
+        </tr>
+    </thead>
+    <tr *ngFor="let customer of customers">
+        <td>{{customer.userId}} </td>
+        <td>{{customer.userName}}</td>
+        <td>{{customer.email}}</td>
+        <td>{{customer.companyName}}</td>
+
     </tr>
-  </thead>
-  <tr *ngFor="let customer of customers">
-    <td>{{ customer.id }}</td>
-    <td>{{ customer.firstName }}</td>
-    <td>{{ customer.lastName }}</td>
-    <td>{{ customer.companyName }}</td>
-  </tr>
-</table>
+    </table>

@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title:string = 'carrental';
   user:string = 'Cihan Koçak';
-  car= {carId:1, brandName:'Ford', colorName:'Mavi', dailyPrice:300}
 }
