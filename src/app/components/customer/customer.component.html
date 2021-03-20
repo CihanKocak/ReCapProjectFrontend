@@ -1,21 +1,30 @@
-<div style="text-align:center"  aria-current="true"><h4>Müsteriler listeleniyor</h4></div>
-<table class="table">
+<div class="card mb-2">
+  <div class="card-header text-center">
+      <strong>Müşteri Listesi</strong>
+  </div>
+  <div class="card-body">
 
-    <thead>
-        <tr>
-            <th>Müsteri Id</th>
-            <th>müster Adı</th>
-            <th>Müsteri Email</th>
-            <th>Müsteri Şirket</th>
+      <div *ngIf="dataLoaded == false" class="text-center">
+          <div class="spinner-border text-dark text-center" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+      </div>
 
-
-        </tr>
-    </thead>
-    <tr *ngFor="let customer of customers">
-        <td>{{customer.userId}} </td>
-        <td>{{customer.userName}}</td>
-        <td>{{customer.email}}</td>
-        <td>{{customer.companyName}}</td>
-
-    </tr>
-    </table>
+      <table class="table table-hover table-bordered" *ngIf="dataLoaded == true">
+          <thead>
+              <tr>
+                  <th>Müşteri No</th>
+                  <th>Müşteri</th>
+                  <th>Firma</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let customer of customers">
+                  <td>{{customer.customerId}}</td>
+                  <td>{{customer.firstName + " "+ customer.lastName}}</td>
+                  <td>{{customer.companyName}}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

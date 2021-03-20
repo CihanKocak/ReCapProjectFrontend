@@ -1,8 +1,24 @@
-<ul  class="list-group">
-  <li class="list-group-item" routerLink="cars"><h6> Tüm Renkler</h6></li>
-  <li (click)="setCurrentColor(color)"
-  routerLink="cars/colors/{{color.colorId}}"
-   [class]="getCurrentColorClass(color)"
-   *ngFor="let color of colors"> {{color.colorName}}</li>
+<div *ngIf="dataLoaded == false" class="text-center">
+  <div class="spinner-border text-dark" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
 
-</ul>
+<div class="mb-3">
+  <label for="filterText" class="form-label fw-bold bg-warning">Search by Colors</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control"
+  placeholder="Please type color name">
+</div>
+<ul *ngIf="dataLoaded == true" class="list-group">
+    <li class="bg-warning text-dark fw-bold"
+    routerLink="/cars"
+    (click)="removeCurrentColor()"
+    [ngClass]="getAllCurrentColorClass()" aria-current="true">All Colors</li>
+    <li
+    (click)="setCurrentColor(color)"
+    [ngClass]="getCurrentColorClass(color)"
+    routerLink="/cars/color/{{color.colorId}}"
+    *ngFor="let color of colors | filterColor:filterText">
+    {{color.colorName}}</li>
+
+  </ul>

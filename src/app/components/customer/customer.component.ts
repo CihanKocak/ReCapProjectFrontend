@@ -9,16 +9,18 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class CustomerComponent implements OnInit {
 
-  customers:Customer[]=[];
+  customers:Customer[] = [];
+  dataLoaded = false;
   constructor(private customerService:CustomerService) { }
 
   ngOnInit(): void {
-    this.getCustomers();
+    this.getCustomer();
   }
 
-  getCustomers(){
-    this.customerService.getCustomers().subscribe(response=>{
-      this.customers=response.data;
+  getCustomer(){
+    this.customerService.getCustomer().subscribe(response => {
+      this.customers = response.data;
+      this.dataLoaded = true;
     })
   }
 

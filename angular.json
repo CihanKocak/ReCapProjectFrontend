@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "7d9b481f-8e9d-4db3-b3a7-0d54ac48ca64"
+    "analytics": "bd0ed876-570b-45c7-8b73-859412f129a6"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "carrental": {
+    "recapproject-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/carrental",
+            "outputPath": "dist/recapproject-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -32,7 +32,9 @@
             ],
             "styles": [
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "./node_modules/font-awesome/css/font-awesome.css",
+              "src/styles.css",
+              "./node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
@@ -72,18 +74,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "carrental:build"
+            "browserTarget": "recapproject-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "carrental:build:production"
+              "browserTarget": "recapproject-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "carrental:build"
+            "browserTarget": "recapproject-frontend:build"
           }
         },
         "test": {
@@ -120,16 +122,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "carrental:serve"
+            "devServerTarget": "recapproject-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "carrental:serve:production"
+              "devServerTarget": "recapproject-frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "carrental"
+  "defaultProject": "recapproject-frontend"
 }

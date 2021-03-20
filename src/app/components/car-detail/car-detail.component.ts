@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Car } from 'src/app/models/car';
-import { CarImage } from 'src/app/models/carImage';
-import { CarDetailByIdService } from 'src/app/services/carDetailById.service';
-
-
-import { CarImagesByIdService } from 'src/app/services/carImagesById.service';
+import { CarDetailAndImagesDto } from 'src/app/models/carDetailAndImagesDto';
+import { CarDetailService } from 'src/app/services/car-detail.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car-detail',
@@ -14,37 +11,37 @@ import { CarImagesByIdService } from 'src/app/services/carImagesById.service';
 })
 export class CarDetailComponent implements OnInit {
 
-  carDetails:Car;
-  carImages:CarImage[]=[];
+  constructor(private carDetailService:CarDetailService,private activatedRoute:ActivatedRoute) { }
 
-  constructor(
-    private carDetailByIdService:CarDetailByIdService,
-    private carImagesByIdService:CarImagesByIdService,
-    private activatedRoute:ActivatedRoute,
-
-
-  ) { }
-
+  carDetail:CarDetailAndImagesDto;
+  dataLoaded = false;
+  imageBasePath = environment.baseUrl
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      if(params["id"]){
-        this.getCarsById(params["id"])
-        this.getImagesById(params["id"])
+    this.activatedRoute.params.subscribe(params => {
+      if(params["carId"]){
+        this.getCarDetail(params["carId"]);
       }
-  })
-  // this.setCarouselConfigs();
-}
 
-  getCarsById(id:number){
-    this.carDetailByIdService.getCarDetailById(id).subscribe(response=>{
-      this.carDetails=response.data[0];
+    });
+  }
+
+  getCarDetail(carId:number){
+    this.carDetailService.getCarDetail(carId).subscribe(response => {
+
+      this.carDetail = response.data;
+      console.log(this.carDetail.carImages);
+
+
+
+      this.dataLoaded = true;
     })
   }
-  getImagesById(id:number){
-    this.carImagesByIdService.getCarImagesById(id).subscribe(response=>{
-      this.carImages=response.data;
-
-    })
+  getSliderClassName(index:Number){
+    if(index == 0){
+      return "carousel-item active";
+    } else {
+      return "carousel-item";
+    }
   }
 
 }

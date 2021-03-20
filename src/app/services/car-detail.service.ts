@@ -6,7 +6,6 @@ import { ItemResponseModel } from 'src/app/models/itemResponseModel';
 import { environment } from 'src/environments/environment';
 
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +14,7 @@ export class CarDetailService {
   constructor(private httpClient:HttpClient) { }
 
   getCarDetail(carId:Number):Observable<ItemResponseModel<CarDetailAndImagesDto>>{
-    let newPath = environment.apiUrl +'cars/getcardetail?carId='+ carId;
+    let newPath = environment.apiUrl +'cars/getcardetail?carId='+carId;
     return this.httpClient.get<ItemResponseModel<CarDetailAndImagesDto>>(newPath);
   }
 
